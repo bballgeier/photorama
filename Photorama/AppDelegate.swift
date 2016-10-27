@@ -16,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let rootViewController = window!.rootViewController as! UINavigationController
+//        let x: Int!
+//        x = 3 // with or without this, x is ImplicitlyUnwrappedOptional<Int>
+//        let x = 3 as Int!
+//        print("type of x: \(type(of: x))")
+//        print("type of rootViewController: \(type(of: rootViewController))")
+        
+        // if you put ! at end of NavigationController, I thought
+        // you would get an implicitly unwrapped optional
+        // but you get an error until you put ? after rootViewController below
+        // which means you still have to unwrap
+        // experiments above and in playground show that when using as or as!
+        // you can only get an optional -- not an implicitly unwrapped optional
+        
+        // interesting enough, with as? you can get an optional of an optional
+        // or an optional of an implicitly unwrapped optional
+        
+        let photosViewController = rootViewController.topViewController as! PhotosViewController
+        photosViewController.store = PhotoStore()
+        
         return true
     }
 
