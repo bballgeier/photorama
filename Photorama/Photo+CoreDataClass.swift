@@ -33,5 +33,15 @@ public class Photo: NSManagedObject {
         timesViewed = 0
 //        dateTaken = Date()
     } // end awakeFromInsert()
+    
+    func addTagObject(_ tag: NSManagedObject) {
+        let currentTags = self.mutableSetValue(forKey: "tags")
+        currentTags.add(tag)
+    } // end addTagObject(_:)
+    
+    func removeTagObject(_ tag: NSManagedObject) {
+        let currentTags = mutableSetValue(forKey: "tags")
+        currentTags.remove(tag)
+    } // end removeTagObject(_:)
 
 } // end class Photo

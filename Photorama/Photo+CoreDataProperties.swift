@@ -16,6 +16,8 @@ extension Photo {
 //    @nonobjc public class func fetchRequest() -> NSFetchRequest<Photo> {
 //        return NSFetchRequest<Photo>(entityName: "Photo");
 //    }
+    
+    // note template came with public variables
 
     @NSManaged public var dateTaken: Date
     @NSManaged public var photoID: String
@@ -23,5 +25,6 @@ extension Photo {
     @NSManaged public var remoteURL: URL
     @NSManaged public var title: String
     @NSManaged public var timesViewed: Int64
+    @NSManaged public var tags: Set<NSManagedObject>
 
-}
+} // end extension Photo

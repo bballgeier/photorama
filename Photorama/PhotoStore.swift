@@ -80,10 +80,16 @@ class PhotoStore {
             var result = self.processRecentPhotosRequest(data: data, error: error as NSError?)
             
             if case let .Success(photos) = result {
-                let mainQueueContext = self.coreDataStack.mainQueueContext
-                mainQueueContext.performAndWait {
-                    try! mainQueueContext.obtainPermanentIDs(for: photos)
+//                let mainQueueContext = self.coreDataStack.mainQueueContext
+//                mainQueueContext.performAndWait {
+//                    try! mainQueueContext.obtainPermanentIDs(for: photos)
+//                } // end closure for performAndWait
+                
+                let privateQueueContext = self.coreDataStack.privateQueueContext
+                privateQueueContext.performAndWait {
+                    try! privateQueueContext.obtainPermanentIDs(for: photos)
                 } // end closure for performAndWait
+                
                 let objectIDs = photos.map { $0.objectID }
                 let predicate = NSPredicate(format: "self IN %@", objectIDs)
                 let sortByDateTaken = NSSortDescriptor(key: "dateTaken", ascending: false)
@@ -111,7 +117,9 @@ class PhotoStore {
                 return .Failure(error!)
         } // end guard/else
         
-        return FlickrAPI.photosFromJSONData(data: jsonData, inContext: self.coreDataStack.mainQueueContext)
+//        return FlickrAPI.photosFromJSONData(data: jsonData, inContext: self.coreDataStack.mainQueueContext)
+        
+        return FlickrAPI.photosFromJSONData(data: jsonData, inContext: self.coreDataStack.privateQueueContext)
     } // end processRecentPhotosRequest(data:error:)
     
     func fetchImageForPhoto(photo: Photo, completion: @escaping (ImageResult) -> Void) {
@@ -193,5 +201,31 @@ class PhotoStore {
         return photos
         
     } // end fetchMainQueuePhotos(predicate:sortDescriptors:)
+    
+    func fetchMainQueueTags(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) throws -> [NSManagedObject] {
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Tag")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        let mainQueueContext = self.coreDataStack.mainQueueContext
+        var mainQueueTags: [NSManagedObject]?
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait {
+            do {
+                mainQueueTags = try mainQueueContext.fetch(fetchRequest)
+            } // end do
+            catch let error {
+                fetchRequestError = error
+            } // end catch
+        } // end closure for performAndWait
+        
+        guard let tags = mainQueueTags
+            else {
+                throw fetchRequestError!
+        } // end guard/else
+        
+        return tags
+    } // end fetchMainQueueTags(predicate:sortDescriptors:)
     
 } // end class PhotoStore

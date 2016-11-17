@@ -44,12 +44,38 @@ class CoreDataStack {
         return moc
     }() // end closure for defining mainQueueContext
     
+    lazy var privateQueueContext: NSManagedObjectContext = {
+        
+        let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        moc.parent = self.mainQueueContext
+        moc.name = "Primary Private Queue Context"
+        
+        return moc
+    }() // end closure for defining privateQueueContext
+    
     required init(modelName: String) {
         managedObjectModelName = modelName
     } // end init(modelName:)
     
     func saveChanges() throws {
         var error: Error?
+        
+        privateQueueContext.performAndWait {
+            () -> Void in
+            if self.privateQueueContext.hasChanges {
+                do {
+                    try self.privateQueueContext.save()
+                } // end do
+                catch let saveError {
+                    error = saveError
+                } // end catch
+            } // end if
+        } // end closure for performAndWait
+        
+        if let error = error {
+            throw error
+        }
+        
         mainQueueContext.performAndWait {
             
             if self.mainQueueContext.hasChanges {

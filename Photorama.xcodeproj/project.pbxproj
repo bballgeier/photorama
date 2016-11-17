@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E98E30E1DC3A8AB006D4D8A /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E98E30D1DC3A8AB006D4D8A /* TagsViewController.swift */; };
+		7E98E3101DC3A9FC006D4D8A /* TagDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E98E30F1DC3A9FC006D4D8A /* TagDataSource.swift */; };
 		8331C4511DAEC92C00A757B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331C4501DAEC92C00A757B6 /* AppDelegate.swift */; };
 		8331C4561DAEC92C00A757B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8331C4541DAEC92C00A757B6 /* Main.storyboard */; };
 		8331C4581DAEC92C00A757B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8331C4571DAEC92C00A757B6 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E98E30D1DC3A8AB006D4D8A /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
+		7E98E30F1DC3A9FC006D4D8A /* TagDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDataSource.swift; sourceTree = "<group>"; };
 		8331C44D1DAEC92C00A757B6 /* Photorama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photorama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8331C4501DAEC92C00A757B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8331C4551DAEC92C00A757B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				83F890E71DB6CE5200982E05 /* PhotoDataSource.swift */,
 				83E337631DC26CC600E4E4D9 /* ImageStore.swift */,
 				83F890EB1DB81EF400982E05 /* PhotoInfoViewController.swift */,
+				7E98E30D1DC3A8AB006D4D8A /* TagsViewController.swift */,
+				7E98E30F1DC3A9FC006D4D8A /* TagDataSource.swift */,
 				8331C4641DAFD65600A757B6 /* FlickrAPI.swift */,
 				8331C4501DAEC92C00A757B6 /* AppDelegate.swift */,
 				8331C4541DAEC92C00A757B6 /* Main.storyboard */,
@@ -173,10 +179,12 @@
 				8331C4671DAFF5EF00A757B6 /* PhotoStore.swift in Sources */,
 				83F890E81DB6CE5200982E05 /* PhotoDataSource.swift in Sources */,
 				83F890EA1DB6D4DA00982E05 /* PhotoCollectionViewCell.swift in Sources */,
+				7E98E30E1DC3A8AB006D4D8A /* TagsViewController.swift in Sources */,
 				83F890F51DB96A4200982E05 /* CoreDataStack.swift in Sources */,
 				83F890F21DB9647B00982E05 /* Photo+CoreDataClass.swift in Sources */,
 				83F890EC1DB81EF400982E05 /* PhotoInfoViewController.swift in Sources */,
 				83F890F31DB9647B00982E05 /* Photo+CoreDataProperties.swift in Sources */,
+				7E98E3101DC3A9FC006D4D8A /* TagDataSource.swift in Sources */,
 				8331C4511DAEC92C00A757B6 /* AppDelegate.swift in Sources */,
 				83E337641DC26CC600E4E4D9 /* ImageStore.swift in Sources */,
 			);
@@ -222,6 +230,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -272,6 +281,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

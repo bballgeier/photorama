@@ -28,7 +28,12 @@ class PhotoInfoViewController: UIViewController {
         // perhaps the code below this is safer somehow
         self.imageView.image = photo.image
         
-        self.timesViewLabel.text = "Viewed \(photo.timesViewed) times"
+        if photo.timesViewed == 1 {
+            self.timesViewLabel.text? = "Viewed 1 time"
+        }
+        else {
+            self.timesViewLabel.text = "Viewed \(photo.timesViewed) times"
+        }
         self.dateTakenLabel.text = "Taken \(photo.dateTaken)"
         
 //        store.fetchImageForPhoto(photo: photo) { (result) -> Void in
@@ -43,5 +48,15 @@ class PhotoInfoViewController: UIViewController {
 //            } // end switch result
 //        } // end completion handler for fetchImageForPhoto(photo:completion:)
     } // end viewDidLoad()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowTags" {
+            let navController = segue.destination as! UINavigationController
+            let tagController = navController.topViewController as! TagsViewController
+            
+            tagController.store = store
+            tagController.photo = photo
+        } // end if
+    } // end prepare(for:sender:)
     
 } // end class PhotoInfoViewController
